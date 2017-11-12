@@ -1,5 +1,5 @@
 {
-  "name": "devis-redis-client",
+  "name": "devis-pub_sub-redis",
   "version": "1.0.0",
   "description": "a devis pub/sub plugin for redis",
   "main": "index.js",
