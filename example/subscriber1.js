@@ -1,5 +1,5 @@
 let devis=require("devis");
-devis.use("./index");
+devis.use("../index");
 
 
 devis.call({ role: "sub", action: "create" },{sub:"sub1"},(err,res)=>{

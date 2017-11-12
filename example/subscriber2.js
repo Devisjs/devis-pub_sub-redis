@@ -1,5 +1,5 @@
 const devis = require("devis");
-devis.use("./index");
+devis.use("../index");
 
 devis.call({ role: "sub", action: "create" },{sub:"sub2"},(err,res)=>{
     console.log(res);
