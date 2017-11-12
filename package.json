@@ -1,0 +1,27 @@
+{
+  "name": "devis-redis-client",
+  "version": "1.0.0",
+  "description": "a devis pub/sub plugin for redis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "microservice",
+    "devis",
+    "devisjs",
+    "plugin",
+    "pub/sub",
+    "store",
+    "redis",
+    "publisher",
+    "subscriber",
+    "service broker"
+  ],
+  "author": "reida ismail <ismailrei@gmail.com> (https://github.com/ismailrei)",
+  "license": "MIT",
+  "dependencies": {
+    "devis": "^2.0.1",
+    "redis": "^2.8.0"
+  }
+}
