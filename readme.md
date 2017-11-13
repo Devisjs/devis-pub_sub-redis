@@ -1,7 +1,7 @@
 # Devis Pub/Sub redis
  <img  src="https://avatars3.githubusercontent.com/u/21971184?v=4&amp;s=200" href="http://devisjs.surge.sh" width="250" />
 
->A Devis plugin for message transport over Redis pubsub
+>A Devis plugin for message transport over Redis pub/sub
 
 # Pub/Sub transport
 
@@ -30,9 +30,44 @@ We should install Devis and the plugin :
 
 ```bash
 $ npm install --save devis
-$ npm install --devis-pub_sub-redis
+$ npm install --save devis-pub_sub-redis
 ```
 
 ## Example 
-you cann see a full example in example folder
+
+### Quick Example
+```javascript
+const devis = require("devis")
+devis.plug("devis-pub_sub-redis");
+
+//Create a subscriber
+devis.call({ role: "pub", action: "create" }, { pub: "pub1" }, (err, res) => {
+    console.log(res);
+
+});
+
+setTimeout(() => {
+    devis.call({ transport: "pub/sub", action: "pubslish" }, { pub: "pub1", topic: "test", message: "newwwwww" }, (err, res) => {
+        console.log(res);
+    });
+}, 3000);
+
+//Create a subscriber
+devis.call({ role: "sub", action: "create" },{sub:"sub1"},(err,res)=>{
+    console.log(res);
+});
+devis.call({ transport: "pub/sub", action: "subscribe" },{sub:"sub1",topic:"test"},(err,res)=>{
+    console.log(res);
+});
+
+devis.listen({
+    type: 'http',
+    port: '8888',
+    host: '127.0.0.1',
+    protocol: 'http'
+});
+```
+
+### Full example
+you can see a full example in example folder
 
