@@ -47,7 +47,7 @@ devis.call({ role: "pub", action: "create" }, { pub: "pub1" }, (err, res) => {
 });
 
 setTimeout(() => {
-    devis.call({ transport: "pub/sub", action: "pubslish" }, { pub: "pub1", topic: "test", message: "newwwwww" }, (err, res) => {
+    devis.call({ transport: "pub/sub", action: "pubslish" }, { pub: "pub1", topic: "test", message: "new message" }, (err, res) => {
         console.log(res);
     });
 }, 3000);
