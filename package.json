@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Devisjs/devis-pub_sub-redis"
+    "url": "https://github.com/Devisjs/devis-pub_sub-redis.git"
   },
   "keywords": [
     "microservice",
