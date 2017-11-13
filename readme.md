@@ -38,13 +38,13 @@ $ npm install --save devis-pub_sub-redis
 ### Quick Example
 ```javascript
 const devis = require("devis")
-devis.plug("devis-pub_sub-redis");
+    .plug("devis-pub_sub-redis")
 
-//Create a subscriber
-devis.call({ role: "pub", action: "create" }, { pub: "pub1" }, (err, res) => {
-    console.log(res);
+    //Create a subscriber
+    .call({ role: "pub", action: "create" }, { pub: "pub1" }, (err, res) => {
+        console.log(res);
 
-});
+    });
 
 setTimeout(() => {
     devis.call({ transport: "pub/sub", action: "pubslish" }, { pub: "pub1", topic: "test", message: "new message" }, (err, res) => {
