@@ -1,10 +1,14 @@
 {
   "name": "devis-pub_sub-redis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a devis pub/sub plugin for redis",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Devisjs/devis-pub_sub-redis"
   },
   "keywords": [
     "microservice",
