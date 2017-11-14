@@ -17,7 +17,7 @@
 
 This plugin solves this problem by using redis.
 
-## Actoris in Pub/Sub 
+## Actors in Pub/Sub 
 * Publisher : Sender apps that tag each message with the name of a topic.
 
 * Sibscriber : Receiver apps that choose which topic to receive messages from.
