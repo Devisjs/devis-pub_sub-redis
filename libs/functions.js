@@ -4,68 +4,57 @@ const redis = require("redis");
 let subscribres = [],
     publishers = [];
 
-function createPublisher(args, done) {
-    let err;
-    let message;
-    if (publishers[args.pub] !== undefined) {
-        err = "publisher already exist";
-    }
-    else {
-        publishers[args.pub] = redis.createClient();
-        message = "publisher " + args.pub + " created";
-    }
+function createClient(args, done, onReady) {
+    const client = redis.createClient({ url: args.url });
+    // Without an error listener a dropped Redis connection crashes the process.
+    client.on("error", (err) => console.error(err));
+    client.connect()
+        .then(() => onReady(client))
+        .catch((err) => done(err, null));
+}
 
-    done(err, message);
+function createPublisher(args, done) {
+    if (publishers[args.pub] !== undefined) {
+        return done("publisher already exist");
+    }
+    createClient(args, done, (client) => {
+        publishers[args.pub] = client;
+        done(undefined, "publisher " + args.pub + " created");
+    });
 }
 
 function createSubscriber(args, done) {
-    let err;
-    let message;
     if (subscribres[args.sub] !== undefined) {
-        err = "publisher already exist";
+        return done("subscriber already exist");
     }
-    else {
-        subscribres[args.sub] = redis.createClient();
-        message = "subscriber " + args.sub + " created";
-    }
-
-    done(err, message);
+    createClient(args, done, (client) => {
+        subscribres[args.sub] = client;
+        done(undefined, "subscriber " + args.sub + " created");
+    });
 }
 
 function pubslish(args, done) {
-    let err;
-    let message;
-
     if (publishers[args.pub] === undefined) {
-        err = "publisher not found";
+        return done("publisher not found");
     }
-    else {
-        publishers[args.pub].publish(args.topic, args.message);
-        message = "publisher " + args.pub + " just publish a message on the topic " + args.topic;
-    }
-    done(err, message);
+    publishers[args.pub].publish(args.topic, args.message)
+        .then(() => done(undefined, "publisher " + args.pub + " just publish a message on the topic " + args.topic))
+        .catch((err) => done(err, null));
 }
 
 function subscribe(args, done) {
-    let err;
-    let message;
-
     if (subscribres[args.sub] === undefined) {
-        err = "subscriber not found";
+        return done("subscriber not found");
     }
-    else {
-        subscribres[args.sub].subscribe(args.topic);
-        message = args.sub + " just jubscribe to the topic " + args.topic;
-    }
-    done(err, message);
-
-    subscribres[args.sub].on("message", (topic, message) => {
+    subscribres[args.sub].subscribe(args.topic, (message, topic) => {
         let result = {
             "topic": topic,
             "message": message
         }
         done(null, result)
-    });
+    })
+        .then(() => done(undefined, args.sub + " just jubscribe to the topic " + args.topic))
+        .catch((err) => done(err, null));
 }
 
 module.exports = {
