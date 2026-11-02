@@ -3,6 +3,11 @@
 
 >A Devis plugin for message transport over Redis pub/sub
 
+<p align="center">
+  <a href="https://www.npmjs.com/package/devis-pub_sub-redis"><img src="https://img.shields.io/npm/v/devis-pub_sub-redis.svg" alt="Version"></a>
+  <a href="https://github.com/Devisjs/devis-pub_sub-redis/actions/workflows/ci.yml"><img src="https://github.com/Devisjs/devis-pub_sub-redis/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+</p>
+
 # Pub/Sub transport
 
 ## Problems
@@ -26,7 +31,7 @@ This plugin solves this problem by using redis.
 
 ## Install
 
-We should install Devis and the plugin :
+Node.js 22 or later and a Redis server are required. Devis is a peer dependency, so install both:
 
 ```bash
 $ npm install --save devis
@@ -68,6 +73,19 @@ devis.listen({
 });
 ```
 
+### Options
+
+`role: "pub"` and `role: "sub"` accept a `url` argument (for example `redis://user:pass@host:6379`). Without it the client connects to `redis://localhost:6379`.
+
+The `subscribe` callback is called once when the subscription is confirmed, then once per message received on that topic, with `{ topic, message }`.
+
 ### Full example
 you can see a full example in example folder
+
+## Upgrading from 1.x
+
+* Node.js 22 or later and Devis 3 are required. Devis is now a peer dependency.
+* The plugin uses the Redis client 6, so it needs Redis 6 or later.
+* A `subscribe` callback now receives only the messages of its own topic. In 1.x, subscribing one subscriber to several topics delivered every message to every callback.
+
 

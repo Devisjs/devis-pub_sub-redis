@@ -1,10 +1,10 @@
 {
   "name": "devis-pub_sub-redis",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "a devis pub/sub plugin for redis",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test --test-force-exit --test-timeout=20000"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,15 @@
   "author": "reida ismail <ismailrei@gmail.com> (https://github.com/ismailrei)",
   "license": "MIT",
   "dependencies": {
-    "devis": "^2.0.1",
-    "redis": "^2.8.0"
+    "redis": "^6.3.1"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "peerDependencies": {
+    "devis": "^3.0.0"
+  },
+  "devDependencies": {
+    "devis": "^3.0.0"
   }
 }
