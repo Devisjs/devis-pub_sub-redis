@@ -1,6 +1,6 @@
 {
   "name": "devis-pub_sub-redis",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "a devis pub/sub plugin for redis",
   "main": "index.js",
   "scripts": {
@@ -31,9 +31,9 @@
     "node": ">=22"
   },
   "peerDependencies": {
-    "devis": "^3.0.0"
+    "devis": "^3.0.0 || ^4.0.0"
   },
   "devDependencies": {
-    "devis": "^3.0.0"
+    "devis": "^4.0.0"
   }
 }
