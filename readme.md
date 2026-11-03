@@ -84,7 +84,7 @@ you can see a full example in example folder
 
 ## Upgrading from 1.x
 
-* Node.js 22 or later and Devis 3 are required. Devis is now a peer dependency.
+* Node.js 22 or later and Devis 3 or 4 are required. Devis is now a peer dependency.
 * The plugin uses the Redis client 6, so it needs Redis 6 or later.
 * A `subscribe` callback now receives only the messages of its own topic. In 1.x, subscribing one subscriber to several topics delivered every message to every callback.
 
